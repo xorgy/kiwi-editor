@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type='text/css'>
+			* {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+
+			html, body {
+				height: 100%;
+				min-height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			#wrapper {
+				width: 80%;
+				margin: auto;
+				height: 100%;
+			}
+
+			#content {
+				height: 100%;
+				background-color: #444;
+				color: #FFF;
+			}
+
+			textarea {
+				max-width: 100%;
+				width: 100%;
+				min-height: 50px;
+			}
+
+
+			.txtstuff {
+				resize: none;
+				overflow: hidden;
+			}
+
+			.noscroll {
+				overflow: hidden;
+			}
+
+			.hiddendiv {
+				display: none;
+				white-space: pre-wrap;
+				width: 100%;
+				min-height: 50px;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+
+			.common {
+				overflow: hidden;font-family: Arial, sans-serif;
+				font-size: 13px;
+			}
+		</style>
+		<script src='http://code.jquery.com/jquery.min.js'></script>
+		<script>
+			$(document).ready(function() {
+				var txt = $('#txt');
+				var hdiv = $(document.createElement('div'));
+				var content = null;
+
+				txt.addClass('txtstuff');
+				hdiv.addClass('hiddendiv common');
+
+
+				$('#content').append(hdiv);
+
+				txt.on('keyup', function() { 
+					content = $(this).val();
+
+					content = content.replace(/\n/g, '<br>');
+					hdiv.html(content + '<br class="lbr">');
+
+					$(this).css('height', hdiv.height());
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id='wrapper'>
+			<div id='content'>
+				<textarea id='txt' class='common'></textarea>
+			</div>
+		</div>
+	</body>
+</html>
